@@ -1,0 +1,37 @@
+# ──────────────────────────────────────────────
+# Core Framework
+# ──────────────────────────────────────────────
+fastapi>=0.115.0
+uvicorn[standard]>=0.30.6
+
+# ──────────────────────────────────────────────
+# Database
+# ──────────────────────────────────────────────
+sqlalchemy>=2.0.35
+alembic>=1.13.2
+# NOTE: psycopg2-binary is only needed when using PostgreSQL.
+# For local dev with SQLite, you don't need it.
+# Install separately when ready: pip install psycopg2-binary
+# psycopg2-binary>=2.9.9
+aiosqlite>=0.20.0            # SQLite async driver (for local dev)
+
+# ──────────────────────────────────────────────
+# Data Validation & Settings
+# ──────────────────────────────────────────────
+pydantic>=2.9.2
+pydantic-settings>=2.5.2
+python-dotenv>=1.0.1
+email-validator>=2.2.0       # For Pydantic email validation
+
+# ──────────────────────────────────────────────
+# Authentication & Security
+# ──────────────────────────────────────────────
+bcrypt>=4.0.0
+python-jose[cryptography]>=3.3.0
+python-multipart>=0.0.9      # Required for OAuth2 form data (login)
+
+# ──────────────────────────────────────────────
+# Development & Testing (optional but recommended)
+# ──────────────────────────────────────────────
+pytest>=8.3.3
+httpx>=0.27.2                # Async test client for FastAPI
