@@ -29,20 +29,12 @@ from app.core.config import settings
 # The engine is the "connection pool" to the database.
 # SQLAlchemy reuses connections efficiently under the hood.
 
-# SQLite needs special config: check_same_thread=False allows FastAPI's
-# async workers to share the connection (SQLite is single-threaded by default)
-if settings.DATABASE_URL.startswith("sqlite"):
-    engine = create_engine(
-        settings.DATABASE_URL,
-        connect_args={"check_same_thread": False},  # Only needed for SQLite
-        echo=settings.DEBUG,  # When DEBUG=True, print all SQL queries to console
-    )
-else:
-    # PostgreSQL (or any other database) — no special args needed
-    engine = create_engine(
-        settings.DATABASE_URL,
-        echo=settings.DEBUG,
-    )
+# Engine configuration with connection health check (pool_pre_ping=True)
+engine = create_engine(
+    settings.DATABASE_URL,
+    pool_pre_ping=True,
+    echo=settings.DEBUG,
+)
 
 # ──────────────────────────────────────────────
 # Create a session factory

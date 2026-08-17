@@ -27,8 +27,7 @@ class Settings(BaseSettings):
     DEBUG: bool = False
 
     # ── Database ─────────────────────────────────
-    # Default to SQLite so the project works out-of-the-box without Postgres
-    DATABASE_URL: str = "sqlite:///./expense_tracker.db"
+    DATABASE_URL: str = "postgresql://postgres:admin@localhost:5432/expense_tracker"
 
     # ── JWT Authentication ───────────────────────
     JWT_SECRET_KEY: str = "CHANGE-ME-to-a-random-secret-key-in-production"

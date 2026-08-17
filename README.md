@@ -18,7 +18,7 @@ This project follows **industry-standard backend architecture** — the kind a b
 | 📄 **Pagination & Filtering** | Filter expenses by date range and category                |
 | ⚠️ **Error Handling**         | Consistent error response format across all endpoints     |
 | ⚙️ **Environment Config**     | Secrets and settings managed via `.env` file              |
-| 🐘 **Dual DB Support**        | Works with PostgreSQL (production) and SQLite (local dev) |
+| 🐘 **PostgreSQL Database**    | Scalable relational database with SQLAlchemy & Alembic    |
 
 ## 🚀 Future Plans
 
@@ -44,7 +44,7 @@ This project follows **industry-standard backend architecture** — the kind a b
 | [Alembic](https://alembic.sqlalchemy.org/)                                        | DB migrations     | Safe, versioned schema changes            |
 | [Pydantic v2](https://docs.pydantic.dev/)                                         | Data validation   | Auto-validates request/response data      |
 | [PostgreSQL](https://www.postgresql.org/)                                         | Primary database  | Battle-tested, scalable relational DB     |
-| [SQLite](https://www.sqlite.org/)                                                 | Dev database      | Zero setup, works out of the box          |
+| [psycopg2-binary](https://www.psycopg.org/)                                       | PostgreSQL driver | Fast, robust DB adapter for Python        |
 | [bcrypt](https://github.com/pyca/bcrypt/)                                         | Password hashing  | Secure, slow-by-design hashing            |
 | [python-jose](https://github.com/mpdavis/python-jose)                             | JWT tokens        | Create and verify JSON Web Tokens         |
 | [pydantic-settings](https://docs.pydantic.dev/latest/concepts/pydantic_settings/) | Config management | Type-safe env var loading                 |
@@ -132,7 +132,7 @@ expense-calculator/
 
 - **Python 3.11+** installed ([download here](https://www.python.org/downloads/))
 - **Git** installed
-- **PostgreSQL** (optional — SQLite works for local development with zero setup)
+- **PostgreSQL** running locally (or via Docker/cloud instance)
 
 ### 1. Clone the Repository
 
@@ -182,7 +182,10 @@ Open `.env` and update the values:
   ```bash
   python -c "import secrets; print(secrets.token_urlsafe(64))"
   ```
-- **`DATABASE_URL`**: Leave as SQLite for local dev, or set your PostgreSQL URL
+- **`DATABASE_URL`**: Set your PostgreSQL connection URL:
+  ```
+  DATABASE_URL=postgresql://<username>:<password>@localhost:5432/<database_name>
+  ```
 
 ### 5. Run Database Migrations
 

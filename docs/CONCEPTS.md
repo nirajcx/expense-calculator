@@ -375,7 +375,7 @@ CLIENT (browser, React app, mobile app, cURL, Postman)
 └────────────────────┬────────────────────────────┘
                      ▼
 ┌─────────────────────────────────────────────────┐
-│  6. DATABASE (SQLAlchemy + PostgreSQL/SQLite)     │
+│  6. DATABASE (SQLAlchemy + PostgreSQL)          │
 │     - INSERT INTO expenses (amount, ...) ...    │
 │     - Returns the new row with auto-gen id      │
 └────────────────────┬────────────────────────────┘
